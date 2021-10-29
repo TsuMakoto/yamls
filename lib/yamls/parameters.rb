@@ -1,22 +1,30 @@
-require_relative "./yml_load"
+require_relative "./yaml_load"
 
-class Parameter
-  def initialize(params, *model, action: :regist, filepath: "app/parameters/column.yml")
-    @params        = params
-    @require_model = model.last
-    @action        = action
-    @columns       = yml_loader.load(filepath).dig(*model, action)
-  end
+module Yamls
+  class Parameters
+    def initialize(
+      params,
+      model:,
+      action:,
+      required: nil,
+      nested: [],
+      filepath: "app/parameters/column.yml"
+    )
+      @params   = params
+      @required = required || @model
+      @columns  = yml_loader.load(filepath).dig(model, *nested.push(action))
+    end
 
-  def permit
-    params.require(require_model).permit(*columns)
-  end
+    def permit
+      params.require(required).permit(*columns)
+    end
 
-  private
+    private
 
-  attr_reader :columns, :require_model, :params, :action
+    attr_reader :params, :required, :columns
 
-  def yml_loader
-    @yml_loader ||= YmlLoad.new
+    def yaml_loader
+      @yaml_loader ||= YamlLoad.new
+    end
   end
 end
