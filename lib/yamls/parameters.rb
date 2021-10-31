@@ -8,12 +8,12 @@ module Yamls
       params,
       model: nil,
       action: nil,
-      required: nil,
+      required: model || action,
       nested: [],
       filepath: "#{Rails.root}/#{Helpers::FILEPATH}"
     )
       @params   = params
-      @required = required || model
+      @required = required
       @nested   = [model, action].push(*nested).compact.map(&:to_s)
       @filepath = filepath
     end
