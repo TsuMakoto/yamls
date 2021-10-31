@@ -1,0 +1,11 @@
+person: &person
+  - name
+  - age
+  - role
+nested:
+  example:
+    person: *person
+
+model:
+  action:
+    *person

@@ -1,12 +1,16 @@
 module Yamls
   class YamlLoad
-    def initialize(basepath = Rails.root, loader: YAML)
-      @basepath = basepath
+    def initialize(filepath, loader: YAML)
+      @filepath = filepath
       @loader   = loader
     end
 
-    def load(filepath)
-      @loader.load_file("#{@basepath}/#{filepath}")
+    def load
+      loader.load_file(filepath)
     end
+
+    private
+
+    attr_reader :filepath, :loader
   end
 end

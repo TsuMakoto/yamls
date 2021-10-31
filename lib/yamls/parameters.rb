@@ -1,30 +1,38 @@
+require_relative "./config"
 require_relative "./yaml_load"
 
 module Yamls
   class Parameters
     def initialize(
       params,
-      model:,
-      action:,
+      model: nil,
+      action: nil,
       required: nil,
       nested: [],
-      filepath: "app/parameters/column.yml"
+      filepath: "#{Rails.root}/#{Yamls::FILEPATH}"
     )
       @params   = params
-      @required = required || @model
-      @columns  = yml_loader.load(filepath).dig(model, *nested.push(action))
+      @required = required || model
+      @nested   = [model, action].push(*nested).compact.map(&:to_s)
+      @filepath = filepath
     end
 
     def permit
-      params.require(required).permit(*columns)
+      return params.permit(columns) if required.nil?
+
+      params.require(required).permit(columns)
     end
 
     private
 
-    attr_reader :params, :required, :columns
+    attr_reader :params, :filepath, :required, :nested
 
     def yaml_loader
-      @yaml_loader ||= YamlLoad.new
+      @yaml_loader ||= YamlLoad.new(filepath)
+    end
+
+    def columns
+      yaml_loader.load.dig(*nested)
     end
   end
 end
