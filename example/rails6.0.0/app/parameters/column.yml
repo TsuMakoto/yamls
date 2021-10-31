@@ -1,0 +1,15 @@
+person:
+  post:
+    - name
+    - agen
+    - role
+
+book:
+  create:
+    - name
+    - label
+    - value
+  update:
+    - name
+    - label
+    - value
