@@ -12,6 +12,8 @@ gem "rspec", "~> 3.0"
 gem "rubocop", "~> 1.7"
 gem 'rubocop-discourse'
 
+gem 'activesupport'
+
 group :test do
   gem 'actionpack'
   gem 'pry-byebug'
