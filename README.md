@@ -121,10 +121,6 @@ Yamls::Parameters.new(
 
 In Yaml file:
 
-3) Nested parameters:
-
-In Yaml file:
-
 ```yml
 main:
   nested1:
@@ -167,7 +163,7 @@ Yamls::Parameters.new(
 
 ```
 
-4) Model specification only:
+3) Model specification only:
 
 If the parameters of create and update are the same, you want to combine them into one.
 
@@ -187,7 +183,7 @@ Yamls::Parameters.new(
 
 ```
 
-5) If you don't need a require method chain:
+4) If you don't need a require method chain:
 
 ```yml
 book:
@@ -214,7 +210,7 @@ In controller:
 ```ruby
 Yamls::Parameters.new(
   params,
-  nested: %i[book]
+  nested: %i[book]  # if you have a yaml with multi level
 )
 
 ```
