@@ -1,5 +1,6 @@
 # Yamls
 
+[![Gem Version](https://badge.fury.io/rb/yamls.svg)](https://badge.fury.io/rb/yamls)
 [![CircleCI](https://circleci.com/gh/TsuMakoto/yamls/tree/main.svg?style=svg)](https://circleci.com/gh/TsuMakoto/yamls/tree/main)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yamls`. To experiment with that code, run `bin/console` for an interactive prompt.
