@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require_relative "./config"
-require_relative "./yaml_load"
+require_relative "./helpers/config"
+require_relative "./helpers/yaml_load"
 
 module Yamls
   class Parameters
@@ -10,7 +10,7 @@ module Yamls
       action: nil,
       required: nil,
       nested: [],
-      filepath: "#{Rails.root}/#{Yamls::FILEPATH}"
+      filepath: "#{Rails.root}/#{Helpers::FILEPATH}"
     )
       @params   = params
       @required = required || model
@@ -29,7 +29,7 @@ module Yamls
     attr_reader :params, :filepath, :required, :nested
 
     def yaml_loader
-      @yaml_loader ||= YamlLoad.new(filepath)
+      @yaml_loader ||= Helpers::YamlLoad.new(filepath)
     end
 
     def columns
