@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :update, :destroy]
 
+  include Yamls::Support::Parameters
+
   # GET /books
   def index
     @books = Book.all
@@ -46,10 +48,6 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      Yamls::Parameters.new(
-        params,
-        model: :book,
-        action: action_name,
-      ).permit
+      yamls
     end
 end
