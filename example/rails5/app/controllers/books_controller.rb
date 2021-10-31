@@ -48,6 +48,6 @@ class BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      yamls
+      params.require(:book).permit(:name, :label, :value)
     end
 end

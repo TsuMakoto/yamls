@@ -48,7 +48,7 @@ class PeopleController < ApplicationController
     def person_params
       Yamls::Parameters.new(
         params,
-        model: :people,
+        model: :person,
         action: :post
       ).permit
     end
