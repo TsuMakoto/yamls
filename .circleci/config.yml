@@ -26,6 +26,26 @@ jobs:
       - run:
           name: Run rspec
           command: bundle exec rspec
+  test_rails5:
+    docker:
+      - image: circleci/ruby:2.7.4-stretch-node
+    executor: ruby/default
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
+      - run:
+          name: Run linter
+          command: cd example/rails5 && bundle exec rubocop
+      - run:
+          name: Setup db
+          command: cd example/rails5 && bundle exec rails db:migrate
+      - run:
+          name: Run test
+          command: cd example/rails5 && bundle exec rake test
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -34,3 +54,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+      - test_rails5:
+          requires:
+            - build

@@ -1,0 +1,11 @@
+people:
+  post:
+    - name
+    - agen
+    - role
+
+book:
+  create:
+    - name
+    - label
+    - value
