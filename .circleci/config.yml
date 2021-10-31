@@ -33,6 +33,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+          command: sudo apt-get install libsqlite3-dev
+      - run:
           name: Which bundler?
           command: bundle -v
       - run:
