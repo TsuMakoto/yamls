@@ -10,7 +10,7 @@ module Yamls
       def yamls
         Yamls::Parameters.new(
           params,
-          model: controller_name,
+          model: controller_name.singularize,
           action: action_name,
         ).permit
       end
