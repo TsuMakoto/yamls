@@ -2,8 +2,9 @@
 
 require "yaml"
 
-require_relative "yamls/version"
-require_relative "yamls/parameters"
+require "yamls/version"
+require "yamls/parameters"
+require "yamls/support"
 
 module Yamls
 end

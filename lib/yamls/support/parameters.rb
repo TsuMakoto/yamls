@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../yamls/parameters"
+require 'active_support'
 
 module Yamls
   module Support
