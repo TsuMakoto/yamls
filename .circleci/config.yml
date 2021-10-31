@@ -35,7 +35,9 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/bundle-install
+      - run:
+          name: Bundle install
+          command: cd example/rails5 && bundle install --path vendor/bundle
       - run:
           name: Setup db
           command: cd example/rails5 && bundle exec rails db:migrate
