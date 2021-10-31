@@ -1,5 +1,14 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'vendor/**/*'
+    - "example/**/*"
+    - "spec/*"
+    - "yamls.gemspec"
+    - "Gemfile"
+
+inherit_gem:
+  rubocop-discourse: default.yml
 
 Style/StringLiterals:
   Enabled: true

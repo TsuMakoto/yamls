@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Yamls
   class YamlLoad
     def initialize(filepath, loader: YAML)
