@@ -22,7 +22,7 @@ jobs:
       - ruby/bundle-install
       - run:
           name: Run linter
-          command: bundle exec 
+          command: bundle exec rubocop
       - run:
           name: Run rspec
           command: bundle exec rspec
