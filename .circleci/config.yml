@@ -105,3 +105,6 @@ workflows:
       - test_rails6_0_0:
           requires:
             - build
+      - test_rails_demo:
+          requires:
+            - build
