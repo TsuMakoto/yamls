@@ -1,0 +1,5 @@
+book:
+  create:
+    - name
+    - label
+    - value

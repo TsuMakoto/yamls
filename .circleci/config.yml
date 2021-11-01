@@ -70,6 +70,28 @@ jobs:
           name: Run test
           command: cd example/rails6.0.0 && bundle exec rake test
 
+  test_rails_demo:
+    docker:
+      - image: cimg/ruby:3.0.2-node
+    executor: ruby/default
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: sudo apt-get update -y && sudo apt-get install -y libsqlite3-dev
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - run:
+          name: Bundle install
+          command: cd example/rails-demo && bundle install --path vendor/bundle
+      - run:
+          name: Setup db
+          command: cd example/rails-demo && bundle exec rails db:migrate
+      - run:
+          name: Run test
+          command: cd example/rails-demo && bundle exec rake test
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
