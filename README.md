@@ -158,7 +158,7 @@ In controller:
 Yamls::Parameters.new(
   params,
   required: :book,
-  nested:   %i[main nested1 neste2 neste3]
+  nested:   %i[main nested1 nested2 nested3]
 )
 
 ```
