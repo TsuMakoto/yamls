@@ -105,6 +105,27 @@ book:
     # set columns
 ```
 
+Define method:
+
+```ruby
+class BooksController < ApplicationController
+  include Yamls::Support::Parameters
+
+  def action_name_1
+    params = book_action_name_1_params # {controller_name.singularize}_{action_name}_params
+  end
+
+  def action_name_2
+    params = book_action_name_2_params
+  end
+
+  def action_name_3
+    params = book_action_name_3_params
+  end
+end
+
+```
+
 ### Initialize configuration
 
 1) If you want to specify a file:
