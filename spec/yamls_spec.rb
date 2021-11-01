@@ -110,6 +110,47 @@ RSpec.describe Yamls do
     end
   end
 
+  context "when multi level nested request params" do
+    let(:lib) do
+      Yamls::Parameters.new(
+        params,
+        required: :book,
+        nested:   %i[main nested1 nested2 nested3],
+        filepath: "#{Dir.pwd}/spec/column.yml"
+      )
+    end
+
+    let(:params) do
+      ActionController::Parameters.new(
+        {
+          book: {
+            name: "Francesco",
+            label: "test-label",
+            values: {
+              a_site: 1000,
+              b_site: 2000,
+              c_site: 3000
+            }
+          }
+        }
+      )
+    end
+
+    it "is permit parameters" do
+      expect(lib.permit.to_h).to eq(
+        {
+          "name" => "Francesco",
+          "label" => "test-label",
+          "values" => {
+            "a_site" => 1000,
+            "b_site" => 2000,
+            "c_site" => 3000
+          }
+        }
+      )
+    end
+  end
+
   context "when model & action params" do
     let(:lib) do
       Yamls::Parameters.new(
@@ -148,6 +189,37 @@ RSpec.describe Yamls do
       Yamls::Parameters.new(
         params,
         nested: %i[person],
+        filepath: "#{Dir.pwd}/spec/column.yml"
+      )
+    end
+
+    let(:params) do
+      ActionController::Parameters.new(
+        {
+          name: "Francesco",
+          age: 22,
+          role: "admin"
+        }
+      )
+    end
+
+    it "is permit parameters" do
+      expect(lib.permit.to_h).to eq(
+        {
+          "name" => "Francesco",
+          "age" => 22,
+          "role" => "admin"
+        }
+      )
+    end
+  end
+
+  context "when non nested params - required: nil" do
+    let(:lib) do
+      Yamls::Parameters.new(
+        params,
+        model: :person,
+        required: nil,
         filepath: "#{Dir.pwd}/spec/column.yml"
       )
     end

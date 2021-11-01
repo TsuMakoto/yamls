@@ -6,6 +6,17 @@ nested:
   example:
     person: *person
 
+main:
+  nested1:
+    nested2:
+      nested3:
+        - name
+        - label
+        - values:
+            - a_site
+            - b_site
+            - c_site
+
 model:
   action:
     *person
